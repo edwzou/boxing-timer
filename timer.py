@@ -5,23 +5,30 @@ pygame.init()
 pygame.mixer.init()
 pygame.mixer.music.load('alarm.mp3')
 
-my_time = int(input("Enter a time in seconds: "))
 
-for x in range(my_time, 0, -1):
-    seconds = x % 60
-    minutes = int(x / 60) % 60
-    hours = int(x / 3600)
-    print(f"{hours:02}:{minutes:02}:{seconds:02}")
-    time.sleep(1)
+def countdown_timer(duration_seconds):
+    start_time = time.time()
+    while time.time() - start_time < duration_seconds:
+        current_time = duration_seconds - (time.time() - start_time)
+        minutes = int(current_time // 60)
+        seconds = int(current_time % 60)
+        print(f"Time remaining: {minutes:02}:{seconds:02}")
+        time.sleep(1)
+    pygame.mixer.music.play()
+    time.sleep(5)  # Play alarm for 5 seconds
 
-print("Time's up!")
-pygame.mixer.music.play()
 
-start_time = time.time()
-while time.time() - start_time < 5:  # stops after 5 seconds
-    if not pygame.mixer.music.get_busy():
-        break
-    time.sleep(0.1)
+num_sets = int(input("Enter number of working sets: "))
+work_duration_minutes = int(input("Enter time per working set in minutes: "))
+rest_duration_minutes = int(input("Enter time per rest set in minutes: "))
 
-pygame.mixer.music.stop()
+
+for set_num in range(1, num_sets + 1):
+    print(f"Working Set {set_num}")
+    countdown_timer(work_duration_minutes * 60)
+
+    if set_num < num_sets:
+        print(f"Rest Set {set_num}")
+        countdown_timer(rest_duration_minutes * 60)
+
 pygame.quit()
