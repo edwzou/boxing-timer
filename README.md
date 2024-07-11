@@ -6,6 +6,7 @@ This Python application uses Pygame to create a customizable boxing timer for wo
 
 - Set the number of working sets and rest periods.
 - Specify duration for each working set and rest period in minutes.
+- Specify a warmup time in seconds to prepare before the first working set.
 - Audio cue (`alarm.mp3`) plays at the end of each working set.
 
 ## Requirements
@@ -18,13 +19,14 @@ This Python application uses Pygame to create a customizable boxing timer for wo
 1. Install Python and Pygame if not already installed.
 2. Clone the repository or download the `timer.py` file.
 3. Run `timer.py`.
-4. Enter the number of working sets, duration per working set, and duration per rest set when prompted.
+4. Enter the warmup time in seconds, number of working sets, duration per working set, and duration per rest set when prompted.
 5. Follow the countdown and audio cues for each interval.
 
 ## Example
 
 ```bash
 python timer.py
+Enter time of warmup in seconds: 60
 Enter number of working sets: 3
 Enter time per working set in minutes: 3
 Enter time per rest set in minutes: 1
