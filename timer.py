@@ -3,7 +3,7 @@ import pygame
 
 pygame.init()
 pygame.mixer.init()
-pygame.mixer.music.load('alarm.mp3')
+pygame.mixer.music.load('sound.mp3')
 
 
 def countdown_timer(duration_seconds):
@@ -15,7 +15,13 @@ def countdown_timer(duration_seconds):
         print(f"Time remaining: {minutes:02}:{seconds:02}")
         time.sleep(1)
     pygame.mixer.music.play()
-    time.sleep(5)  # Play alarm for 5 seconds
+
+    # Wait for the sound to finish playing
+    start_sound_time = time.time()
+    while time.time() - start_sound_time < 5:
+        if not pygame.mixer.music.get_busy():
+            break
+        time.sleep(0.1)
     pygame.mixer.music.stop()
 
 
@@ -24,11 +30,11 @@ num_sets = int(input("Enter number of working sets: "))
 work_duration_minutes = int(input("Enter time per working set in minutes: "))
 rest_duration_minutes = int(input("Enter time per rest set in minutes: "))
 
-# Warmup period
-print("Warmup Time")
+
+print("Warmup Time")  # warmup period
 countdown_timer(warmup_time)
 
-for set_num in range(1, num_sets + 1):
+for set_num in range(1, num_sets + 1):  # working and resting sets
     print(f"Working Set {set_num}")
     countdown_timer(work_duration_minutes * 60)
 
