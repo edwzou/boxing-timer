@@ -16,12 +16,17 @@ def countdown_timer(duration_seconds):
         time.sleep(1)
     pygame.mixer.music.play()
     time.sleep(5)  # Play alarm for 5 seconds
+    pygame.mixer.music.stop()
 
 
+warmup_time = int(input("Enter time of warmup in seconds: "))
 num_sets = int(input("Enter number of working sets: "))
 work_duration_minutes = int(input("Enter time per working set in minutes: "))
 rest_duration_minutes = int(input("Enter time per rest set in minutes: "))
 
+# Warmup period
+print("Warmup Time")
+countdown_timer(warmup_time)
 
 for set_num in range(1, num_sets + 1):
     print(f"Working Set {set_num}")
