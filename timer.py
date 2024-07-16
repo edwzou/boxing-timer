@@ -43,5 +43,6 @@ for set_num in range(1, num_sets + 1):  # working and resting sets
         countdown_timer(rest_duration_minutes * 60)
 
 print("Workout over, hope you had a good workout!")
+print("See you next time!")
 
 pygame.quit()
